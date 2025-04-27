@@ -61,7 +61,7 @@ const submit = () => {
             :disabled="form.processing"
           />
           <Link :href="route('logout')" method="post" as="button">
-            Logout
+            退出登录
           </Link>
         </BaseLevel>
       </CardBox>

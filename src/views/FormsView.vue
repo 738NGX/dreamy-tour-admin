@@ -22,8 +22,8 @@ const selectOptions = [
 ]
 
 const form = reactive({
-  name: 'John Doe',
-  email: 'john.doe@example.com',
+  name: '738NGX',
+  email: 'jny738ngx@gmail.com',
   phone: '',
   department: selectOptions[0],
   subject: '',

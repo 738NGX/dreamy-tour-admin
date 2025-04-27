@@ -3,12 +3,14 @@ import { computed, ref, onMounted } from 'vue'
 import { useMainStore } from '@/stores/main'
 import {
   mdiAccountMultiple,
-  mdiCartOutline,
   mdiChartTimelineVariant,
   mdiMonitorCellphone,
   mdiReload,
   mdiGithub,
-  mdiChartPie
+  mdiChartPie,
+  mdiMapClockOutline,
+  mdiForum,
+  mdiDatabase
 } from '@mdi/js'
 import * as chartConfig from '@/components/Charts/chart.config.js'
 import LineChart from '@/components/Charts/LineChart.vue'
@@ -44,7 +46,7 @@ const transactionBarItems = computed(() => mainStore.history)
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton :icon="mdiChartTimelineVariant" title="Overview" main>
+      <SectionTitleLineWithButton :icon="mdiChartTimelineVariant" title="概览" main>
         <BaseButton
           href="https://github.com/justboil/admin-one-vue-tailwind"
           target="_blank"
@@ -60,30 +62,62 @@ const transactionBarItems = computed(() => mainStore.history)
         <CardBoxWidget
           trend="12%"
           trend-type="up"
-          color="text-emerald-500"
+          color="text-blue-500"
           :icon="mdiAccountMultiple"
-          :number="512"
-          label="Clients"
+          :number="2333"
+          label="登录用户"
         />
         <CardBoxWidget
           trend="12%"
           trend-type="down"
           color="text-blue-500"
-          :icon="mdiCartOutline"
-          :number="7770"
-          prefix="$"
-          label="Sales"
+          :icon="mdiMapClockOutline"
+          :number="114"
+          label="活动行程"
         />
         <CardBoxWidget
-          trend="Overflow"
+          trend="高负载"
           trend-type="alert"
-          color="text-red-500"
+          color="text-blue-500"
           :icon="mdiChartTimelineVariant"
-          :number="256"
+          :number="88"
           suffix="%"
-          label="Performance"
+          label="QPS负载"
+        />
+        <CardBoxWidget
+          trend="30%"
+          trend-type="up"
+          color="text-blue-500"
+          :icon="mdiAccountMultiple"
+          :number="666"
+          label="活跃用户"
+        />
+        <CardBoxWidget
+          trend="0%"
+          color="text-blue-500"
+          :icon="mdiForum"
+          :number="114"
+          label="频道数量"
+        />
+        <CardBoxWidget
+          trend="充足"
+          color="text-blue-500"
+          :icon="mdiDatabase"
+          :number="2.2"
+          suffix="GB/10.0GB"
+          label="COS存储"
         />
       </div>
+
+      <SectionTitleLineWithButton :icon="mdiChartPie" title="趋势概览">
+        <BaseButton :icon="mdiReload" color="whiteDark" @click="fillChartData" />
+      </SectionTitleLineWithButton>
+
+      <CardBox class="mb-6">
+        <div v-if="chartData">
+          <line-chart :data="chartData" class="h-96" />
+        </div>
+      </CardBox>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div class="flex flex-col justify-between">
@@ -111,16 +145,6 @@ const transactionBarItems = computed(() => mainStore.history)
       </div>
 
       <SectionBannerStarOnGitHub class="mt-6 mb-6" />
-
-      <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview">
-        <BaseButton :icon="mdiReload" color="whiteDark" @click="fillChartData" />
-      </SectionTitleLineWithButton>
-
-      <CardBox class="mb-6">
-        <div v-if="chartData">
-          <line-chart :data="chartData" class="h-96" />
-        </div>
-      </CardBox>
 
       <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients" />
 

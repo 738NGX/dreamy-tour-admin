@@ -15,7 +15,7 @@ import {
 export default [
   {
     icon: mdiMenu,
-    label: 'Sample menu',
+    label: '选项设置',
     menu: [
       {
         icon: mdiClockOutline,

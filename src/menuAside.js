@@ -2,85 +2,55 @@ import {
   mdiAccountCircle,
   mdiMonitor,
   mdiGithub,
-  mdiLock,
-  mdiAlertCircle,
   mdiSquareEditOutline,
   mdiTable,
-  mdiViewList,
   mdiTelevisionGuide,
-  mdiResponsive,
   mdiPalette,
-  mdiReact
 } from '@mdi/js'
 
 export default [
   {
     to: '/dashboard',
     icon: mdiMonitor,
-    label: 'Dashboard'
+    label: '控制台'
   },
   {
-    to: '/tables',
-    label: 'Tables',
-    icon: mdiTable
+    label: '数据库',
+    icon: mdiTable,
+    menu: [
+      {
+        label: '用户表',
+        to: '/tables'
+      },
+      {
+        label: '行程表'
+      }
+    ]
   },
   {
     to: '/forms',
-    label: 'Forms',
+    label: '日志',
     icon: mdiSquareEditOutline
   },
   {
     to: '/ui',
-    label: 'UI',
+    label: '资源管理器',
     icon: mdiTelevisionGuide
   },
   {
-    to: '/responsive',
-    label: 'Responsive',
-    icon: mdiResponsive
-  },
-  {
     to: '/',
-    label: 'Styles',
+    label: '样式',
     icon: mdiPalette
   },
   {
     to: '/profile',
-    label: 'Profile',
+    label: '个人信息',
     icon: mdiAccountCircle
-  },
-  {
-    to: '/login',
-    label: 'Login',
-    icon: mdiLock
-  },
-  {
-    to: '/error',
-    label: 'Error',
-    icon: mdiAlertCircle
-  },
-  {
-    label: 'Dropdown',
-    icon: mdiViewList,
-    menu: [
-      {
-        label: 'Item One'
-      },
-      {
-        label: 'Item Two'
-      }
-    ]
   },
   {
     href: 'https://github.com/justboil/admin-one-vue-tailwind',
     label: 'GitHub',
     icon: mdiGithub,
-    target: '_blank'
-  },
-  {
-    href: 'https://github.com/justboil/admin-one-react-tailwind',
-    label: 'React version',
-    icon: mdiReact,
     target: '_blank'
   }
 ]
